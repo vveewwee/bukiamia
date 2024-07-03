@@ -11,6 +11,21 @@ box-shadow: 0px 0px 7px #666;
 width:100%;
 `
 
+const CarouselHolder = styled.div`
+padding:10%;
+display: flex;
+flex-direction:row;
+align-items: center;
+justify-content: center;
+width:100%;
+height: auto;
+overflow-x: scroll;
+overflow-y:hidden;
+width: 50%;
+height: 40vh;
+white-space: nowrap;
+`
+
 const Span = styled.span`
 `
 export default function Carousel({data}){
@@ -21,24 +36,29 @@ export default function Carousel({data}){
     function increaseIndex(cur){
         cur === data.length - 1 ? (cur = 0) : (cur = index + 1);
         setIndex(cur);
+        console.log("increase" + index);
     }
 
     function decreaseIndex(cur){
-        cur === 0 ? (cur = data.lenght - 1) : (cur = index - 1);
+        cur === 0 ? (cur = data.length - 1) : (cur = index - 1);
         setIndex(cur);
+        console.log("decrease" + index);
     }
 
     return (
         <Fragment>
-            <FontAwesomeIcon onClick={()=>decreaseIndex(cur)}icon={faArrowLeft} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, left:"1rem"
+            <CarouselHolder>
+                <FontAwesomeIcon onClick={()=>decreaseIndex(cur)}icon={faArrowLeft} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, left:"1rem"
             }}/>
-             <IMG src={data[index].src} alt={data[index].alt} key={index}/>
-            <FontAwesomeIcon onClick={()=>increaseIndex(cur)}icon={faArrowRight} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, right:"1rem"}}/>
-            <Span>
-                {data.map((__, idx) => {
-                    return <button key={idx} onClick={null}/>
-                })}
-            </Span>
+                <IMG src={data[index].src} alt={data[index].alt} key={index}/>
+                <FontAwesomeIcon onClick={()=>increaseIndex(cur)}icon={faArrowRight} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, right:"1rem"}}/>
+            </CarouselHolder>
         </Fragment>
     );
 }
+
+{/* <Span>
+                {data.map((__, idx) => {
+                    return <button key={idx} onClick={null}/>
+                })}
+            </Span> */}

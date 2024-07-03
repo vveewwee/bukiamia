@@ -10,6 +10,7 @@ export default function AppRouter(){
         <Fragment>
             <Routes>
                 <Route exact path="/" element={<Home />}/>
+                <Route exact path="/BukiaMia.html"/>
                 <Route path="*" element={<Error />} />
             </Routes>
         </Fragment>

@@ -6,6 +6,8 @@ import photoA from "../../assets/photos/A.png";
 import photoB from "../../assets/photos/car_5.png"
 import data from "../../data/carousel.json";
 import Carousel from "../Carousel";
+import Car from "../Car";
+import { device } from "../../style/size";
 
 
 // Should hold the 4 squares and the carousel
@@ -22,38 +24,55 @@ align-items: center;
 
 const ImgHolderContainer = styled.div`
 width:100%;
-height:100%;
+height:100vh;
 display: flex;
 flex: 1;
 flex-direction: row;
 justify-content: space-evenly;
 align-items: center;
+@media ${device.tabletL} {
+        flex-flow: column;
+    }
 `
 
 const ImgHolder = styled.div`
 width:50%;
 overflow: hidden;
-min-height:100%;
+max-height:100vh;
+@media ${device.tabletL} {
+        width:100%;
+    }
 `
+const HorizontalSection = styled.section`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 10% 0% 10% 0;
+`;
 
-const CarouselHolder = styled.div`
-padding:10%;
-display: flex;
-flex-direction:row;
-align-items: center;
-justify-content: space-between;
-width:100%;
-height: auto;
-overflow-x: scroll;
-overflow-y:hidden;
-width: 300px;
-white-space: nowrap;
+const CardsContainer = styled.div`
+  position: relative;
+  height: 100%;
+  padding: 0 0 0 150px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const PhotoCard = styled.img`
+width: 60%;
+margin: 5%;
+@media ${device.tabletL} {
+        width: 100%;
+    }  
 `
 
 export default function Body(){
+
     return(
         <Fragment>
-            <Container>
+            <Container id="Menu">
                 <ImgHolderContainer style={{backgroundColor:`${colors.primary}`}}>
                     <ImgHolder>
                         <img src={photoA} style={{minWidth: "100%", height:"auto", objectFit:"cover"}}/>
@@ -68,9 +87,15 @@ export default function Body(){
                     </ImgHolder>
                 </ImgHolderContainer>
             </Container>
-            <CarouselHolder>
-                <Carousel data={data}/>
-            </CarouselHolder>
+            <HorizontalSection>
+               <Car>
+                <CardsContainer>
+                {data.map((item, index) => {
+                    return <PhotoCard src={item.src} alt={item.alt} key={index}/>
+                })}
+                </CardsContainer>
+               </Car>
+               </HorizontalSection>
         </Fragment>
     )
 }

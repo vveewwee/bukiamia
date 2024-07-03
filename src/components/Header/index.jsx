@@ -1,23 +1,15 @@
-import React, { useState} from "react";
-import { GlobalStyle } from "../../style/GlobalStyle";
+import React from "react";
+import colors from "../../style/colors";
 import header_back from "../../assets/photos/header_back.png";
 import logo from "../../assets/logo/logo_white.png";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
+import Navbar from "../Navbar";
 import { device } from "../../style/size";
 
-
-const MenuHolder = styled.div`
-width:fit-content;
-position: fixed;
-top: 5%;
-right: 5%;
-`
-
 const InfoContainer = styled.div`
+width:40%;
 display:flex;
-flex-direction: row;
+flex-flow: row wrap;
 align-items: center;
 justify-content: center;
 color: white;
@@ -28,20 +20,35 @@ left: 5%;
 
 const ParHolder = styled.div`
 margin: 5px;
-font-size: 1wh;
+font-size: 1rem;
+`
+
+const BackImg = styled.img`
+width:100%;
+height: 100vh;
+object-fit: cover;
+object-position: center;
 `
 
 const LogoHolder = styled.div`
 position:absolute;
-margin-top:5%;
-top:50%;
+top:50vh;
 left:50%;
 transform:translate(-50%, -50%);
 display:flex;
 flex-direction:column;
-color: white;
+color: ${colors.plain};
 align-items:center;
 justify-content:center;
+@media ${device.tabletL} {
+        font-size:1rem;
+    }  
+`
+const Logo = styled.img`
+width:50%;
+@media ${device.tabletL} {
+       width:100%;
+    }  
 `
 const DescriptionHolder = styled.div`
 width:80%;
@@ -50,31 +57,29 @@ align-items: center;
 justify-content: center;
 text-align:center;
 margin:10%;
+@media ${device.tabletL} {
+        height: 50vh;
+    }  
 `
 const DescriptionP = styled.p`
 `
 
 export default function Header(){
 
-    const [click, setClick] = useState(false);
-    const handleClick = () => setClick(!click);
-
     return (
-        <header>
-            <img src={header_back} style={{width: "100%"}} alt="bukia mia" />
-            <MenuHolder onClick={handleClick}>
-                < FontAwesomeIcon icon={click ? faXmark : faBars} style={{color: "white"}}/>
-            </MenuHolder>
+        <header id="Home" style={{width:"100%"}}>
+            <BackImg src={header_back} alt="bukia mia" />
+            <Navbar/>
             <InfoContainer>
                 <ParHolder>
                     <p> Lykourgou 2 Chalandri <br/> Athens </p>
                  </ParHolder>
                 <ParHolder>
-                    <p> 210 12345678 </p>
+                    <p>+30 211 00 11 979 </p>
                 </ParHolder>
             </InfoContainer>
             <LogoHolder>
-                <img src={logo} style={{width: "20vw"}} alt="bukia mia logo"/>
+                <Logo src={logo} alt="bukia mia logo"/>
                 <p> D E L I  &  W I N E</p>
             </LogoHolder>
             <DescriptionHolder>
