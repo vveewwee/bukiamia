@@ -1,0 +1,33 @@
+@import '../../style/colors.css';
+
+.buttonMenu:hover{
+    border-color: blue;
+}
+
+.menuContainer{
+    animation-name: change-menu-color;
+    animation-duration: 30s;
+}
+
+.wineContainer{
+    animation-name: change-wine-color;
+    animation-duration: 30s;
+}
+
+@keyframes change-menu-color{
+    from{
+        background-color: var(--color-secondary);
+    }
+    to{
+        background-color: var(--color-primary);
+    }
+}
+
+@keyframes change-wine-color{
+    from{
+        background-color: var(--color-primary);
+    }
+    to{
+        background-color: var(--color-secondary);
+    }
+}

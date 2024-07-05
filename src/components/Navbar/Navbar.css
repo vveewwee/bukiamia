@@ -44,3 +44,15 @@
     bottom: -4px;
     left:20px;
 }
+
+.xMenu {
+    color:var(--color-plain);
+}
+
+.xMenu:hover{
+    transform: scale(1.2);
+    color:var(--color-background);
+}
+.ancorIcons a:hover{
+    transform: scale(1.2);
+}

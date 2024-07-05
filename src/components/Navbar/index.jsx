@@ -59,7 +59,7 @@ export default function Navbar(){
     return(
         <Fragment>
             <MenuHolder onClick={handleClick} style={{cursor: "pointer"}}>
-                < FontAwesomeIcon icon={click ? faXmark : faBars} style={{color: `${colors.plain}`}}/>
+                < FontAwesomeIcon className="xMenu" icon={click ? faXmark : faBars}/>
             </MenuHolder>
             <Nav>
                 <Cover onClick={handleClick} style={click ? {display: "block"} : {display: "none"}}/>
@@ -72,7 +72,7 @@ export default function Navbar(){
                         <li>Lykourgou 2</li>
                         <li>Chalandri</li>
                         <li><a href="tel:+302110011979">+30 21 10011979</a></li>
-                        <IconContainer>
+                        <IconContainer className="ancorIcons">
                             <a href="https://www.instagram.com/bukia_mia/"><FontAwesomeIcon icon={faSquareInstagram} size="2x" style={{color:`${colors.primary}`}}/></a>
                             <a href="mailto:info@bukiamia.gr"><FontAwesomeIcon icon={faEnvelope} size="2x" style={{color:`${colors.primary}`}}/></a>
                             <a href="https://www.facebook.com/people/Bukia-Mia/61553911185837/"><FontAwesomeIcon icon={faSquareFacebook} size="2x" style={{color:`${colors.primary}`}}/></a> 

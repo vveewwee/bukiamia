@@ -13,6 +13,7 @@ const Container = styled.div`
 display:flex;
 flex-direction: row;
 width:100%;
+height:100vh; 
 @media ${device.tabletL} {
         flex-flow: column;
     }
@@ -24,11 +25,17 @@ flex-direction: row;
 justify-content: center;
 width:100%;
 object-fit:cover;
+
 `
 
 const Img = styled.img`
 width:100%;
+height:100vh;
 overflow: hidden;
+object-fit:cover;
+@media ${device.tabletL} {
+        height:50vh;
+    }
 `
 
 const InfoContainer = styled.div`
@@ -37,8 +44,9 @@ align-items:center;
 justify-content: center;
 width:100%;
 background-image: url(${background});
+background-size: cover;
 @media ${device.tabletL} {
-        height:60vh;
+        height:80vh;
     }
 `
 
@@ -46,7 +54,7 @@ const Paragraph = styled.p`
 color:${colors.plain};
 margin:0%;
 margin-bottom:2%;
-font-size:3rem;
+font-size:1.8rem;
 font-weight: 900;
 @media ${device.tabletL} {
         font-size:2rem;
@@ -55,10 +63,10 @@ font-weight: 900;
 const ParagraphXS = styled.p`
 color:${colors.plain};
 margin:0%;
-font-size:1.4rem;
+font-size:1.2rem;
 font-weight: 700;
 @media ${device.tabletL} {
-        font-size:1.3rem;
+        font-size:1.4rem;
         margin:2%;
     }
 
@@ -83,7 +91,11 @@ const Ancor = styled.a`
 text-decoration: none;
 color: ${colors.plain};
 padding:5%;
+&:hover {
+    transform: scale(1.2);
+  }
 `
+
 
 export default function Footer(){
     return(

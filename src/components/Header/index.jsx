@@ -1,7 +1,7 @@
 import React from "react";
 import colors from "../../style/colors";
 import header_back from "../../assets/photos/header_back.png";
-import logo from "../../assets/logo/logo_white.png";
+import logo from "../../assets/logo/logo_solid.png";
 import styled from "styled-components";
 import Navbar from "../Navbar";
 import { device } from "../../style/size";
@@ -11,7 +11,7 @@ width:40%;
 display:flex;
 flex-flow: row wrap;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 color: white;
 position: absolute;
 top: 5%;
@@ -46,6 +46,9 @@ justify-content:center;
 `
 const Logo = styled.img`
 width:50%;
+&:hover {
+    transform: scale(1.2);
+  }
 @media ${device.tabletL} {
        width:100%;
     }  
@@ -60,6 +63,10 @@ margin:10%;
 @media ${device.tabletL} {
         height: 50vh;
     }  
+&:hover {
+  color:${colors.background};
+  transform: skew(15deg);
+      }
 `
 const DescriptionP = styled.p`
 `

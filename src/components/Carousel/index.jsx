@@ -1,14 +1,18 @@
 import React, { Fragment, useState } from "react";
 import styled from "styled-components";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import colors from "../../style/colors";
+//import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import colors from "../../style/colors";
 
 
 const IMG = styled.img`
-border-radius: 0.5rem;
-box-shadow: 0px 0px 7px #666;
-width:100%;
+width:70%;
+height: 80%;
+padding:5%;
+object-fit: contain;
+&:hover {
+    transform:scale(1.2);
+  }
 `
 
 const CarouselHolder = styled.div`
@@ -18,18 +22,27 @@ flex-direction:row;
 align-items: center;
 justify-content: center;
 width:100%;
-height: auto;
-overflow-x: scroll;
-overflow-y:hidden;
-width: 50%;
-height: 40vh;
+height: 90vh;
 white-space: nowrap;
+overflow: hidden;
 `
-
-const Span = styled.span`
+const BackImageL = styled.img`
+width:20%;
+object-fit: contain;
+&:hover {
+    transform: skewX(10deg);
+  }
+`
+const BackImageR = styled.img`
+width:20%;
+object-fit: contain;
+&:hover {
+    transform: skewX(-10deg);
+  }
 `
 export default function Carousel({data}){
 
+    let size = data.length;
     const [index, setIndex] = useState(0);
     let cur = index;
 
@@ -45,20 +58,23 @@ export default function Carousel({data}){
         console.log("decrease" + index);
     }
 
+
     return (
         <Fragment>
             <CarouselHolder>
-                <FontAwesomeIcon onClick={()=>decreaseIndex(cur)}icon={faArrowLeft} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, left:"1rem"
-            }}/>
-                <IMG src={data[index].src} alt={data[index].alt} key={index}/>
-                <FontAwesomeIcon onClick={()=>increaseIndex(cur)}icon={faArrowRight} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, right:"1rem"}}/>
+                <BackImageL onClick={()=>decreaseIndex(cur)} src={index == "0" ? (data[size - 1].src) : (data[index - 1].src)} key={index - 1} style={{paddingLeft:"10%"}}/>
+                <IMG onClick={()=>increaseIndex(cur)} src={data[index].src} alt={data[index].alt} key={index}/>
+                <BackImageR onClick={()=>increaseIndex(cur)} src={index == size - 1? (data[0].src):(data[index + 1].src)} key={index+1} style={{paddingRight:"10%"}}/>
             </CarouselHolder>
         </Fragment>
     );
 }
 
-{/* <Span>
-                {data.map((__, idx) => {
-                    return <button key={idx} onClick={null}/>
-                })}
-            </Span> */}
+// {/* <Span>
+//                 {data.map((__, idx) => {
+//                     return <button key={idx} onClick={null}/>
+//                 })}
+//             </Span>
+//             <FontAwesomeIcon onClick={()=>decreaseIndex(cur)} icon={faArrowLeft} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, left:"1rem"}}/>
+//          <FontAwesomeIcon onClick={()=>increaseIndex(cur)} icon={faArrowRight} style={{position:"absolute", width:"2rem", height:"2rem", color: `${colors.primary}`, right:"1rem"}}/>
+//         */}
